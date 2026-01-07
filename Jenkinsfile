@@ -3,6 +3,12 @@ pipeline {
 
     stages {
 
+        stage('Checkout') {
+            steps {
+                git branch: 'main', url: 'https://github.com/VictorBrin/nodejs-getting-started'
+            }
+        }
+
         stage('Install dependencies') {
             steps {
                 sh 'npm install'
@@ -11,13 +17,13 @@ pipeline {
 
         stage('Tests') {
             steps {
-                sh 'npm test || echo "No hay pruebas definidas"'
+                sh 'npm test || echo "Tests fallaron, pero continuo con el pipeline"'
             }
         }
 
         stage('Run application') {
             steps {
-                sh 'npm start &'
+                sh 'nohup npm start &'
             }
         }
     }
