@@ -3,12 +3,6 @@ pipeline {
 
     stages {
 
-        stage('Checkout') {
-            steps {
-                git 'https://github.com/VictorBrin/nodejs-getting-started.git'
-            }
-        }
-
         stage('Install dependencies') {
             steps {
                 sh 'npm install'
